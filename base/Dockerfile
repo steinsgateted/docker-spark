@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM ubuntu:18.04
 
 LABEL maintainer="Gezim Sejdiu <g.sejdiu@gmail.com>, Giannis Mouchakis <gmouchakis@gmail.com>"
 
@@ -16,9 +16,17 @@ COPY finish-step.sh /
 
 #COPY bde-spark.css /css/org/apache/spark/ui/static/timeline-view.css
 
-RUN apk add --no-cache curl bash openjdk8-jre python3 py-pip nss libc6-compat coreutils procps \
-      && ln -s /lib64/ld-linux-x86-64.so.2 /lib/ld-linux-x86-64.so.2 \
-      && chmod +x *.sh \
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+      openjdk-8-jdk \
+      net-tools \
+      curl \
+      nano \
+      python3 \
+      python3-pip \
+      python3-dev \
+      wget \
+    && rm -rf /var/lib/apt/lists/*
+RUN chmod +x *.sh \
       && wget ${BASE_URL}/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz \
       && tar -xvzf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz \
       && mv spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} spark \
@@ -26,6 +34,9 @@ RUN apk add --no-cache curl bash openjdk8-jre python3 py-pip nss libc6-compat co
       #&& cd /css \
       #&& jar uf /spark/jars/spark-core_2.11-${SPARK_VERSION}.jar org/apache/spark/ui/static/timeline-view.css \
       && cd /
+
+COPY spark-volumn/pythonForSpark.txt /pythonForSpark.txt
+RUN pip3 install -r /pythonForSpark.txt
 
 #Give permission to execute scripts
 RUN chmod +x /wait-for-step.sh && chmod +x /execute-step.sh && chmod +x /finish-step.sh

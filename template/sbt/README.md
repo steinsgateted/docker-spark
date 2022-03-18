@@ -11,7 +11,7 @@ for a description how to setup a Spark cluster.
 spark-shell:
 
 ```
-docker run -it --rm bde2020/spark-sbt-template sbt console
+docker run -it --rm ted/spark-sbt-template sbt console
 ```
 
 You can also use directly your Docker image and test your own code that way.
@@ -63,9 +63,9 @@ the `/template.sh` script at the end.
 
 ```
 <<<<<<< HEAD:template/sbt/README.md
-FROM bde2020/spark-sbt-template:3.2.0-hadoop3.2
+FROM ted/spark-sbt-template:3.2.0-hadoop3.2
 =======
-FROM bde2020/spark-scala-template:3.2.0-hadoop3.2
+FROM ted/spark-scala-template:3.2.0-hadoop3.2
 >>>>>>> cd4cab298d8e63ecaf488ffaf80ed5f6df5d5384:template/scala/README.md
 
 MAINTAINER Cecile Tonglet <cecile.tonglet@tenforce.com>

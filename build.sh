@@ -6,7 +6,7 @@ TAG=3.2.0-hadoop3.2
 
 build() {
     NAME=$1
-    IMAGE=bde2020/spark-$NAME:$TAG
+    IMAGE=ted/spark-$NAME:$TAG
     cd $([ -z "$2" ] && echo "./$NAME" || echo "$2")
     echo '--------------------------' building $IMAGE in $(pwd)
     docker build -t $IMAGE .
@@ -18,13 +18,6 @@ if [ $# -eq 0 ]
     build base
     build master
     build worker
-    build history-server
-    build submit
-    build maven-template template/maven
-    build sbt-template template/sbt
-    build python-template template/python
-    
-    build python-example examples/python
   else
     build $1 $2
 fi

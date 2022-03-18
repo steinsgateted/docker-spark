@@ -37,7 +37,7 @@ jobs:
         with:
           context: base
           file: base/Dockerfile
-          tags: bde2020/spark-base:${{env.DOCKER_IMAGE_TAG}}
+          tags: ted/spark-base:${{env.DOCKER_IMAGE_TAG}}
           push: ${{ github.event_name != 'pull_request' }}
 
   master_worker_history:
@@ -79,7 +79,7 @@ jobs:
         with:
           context: ${{ matrix.image }}
           file: ${{ matrix.image }}/Dockerfile
-          tags: bde2020/spark-${{ matrix.image }}:${{env.DOCKER_IMAGE_TAG}}
+          tags: ted/spark-${{ matrix.image }}:${{env.DOCKER_IMAGE_TAG}}
           push: ${{ github.event_name != 'pull_request' }}
 
   submit:
@@ -121,7 +121,7 @@ jobs:
         with:
           context: ${{ matrix.image }}
           file: ${{ matrix.image }}/Dockerfile
-          tags: bde2020/spark-${{ matrix.image }}:${{env.DOCKER_IMAGE_TAG}}
+          tags: ted/spark-${{ matrix.image }}:${{env.DOCKER_IMAGE_TAG}}
           push: ${{ github.event_name != 'pull_request' }}
 
   template:
@@ -163,5 +163,5 @@ jobs:
         with:
           context: template/${{ matrix.template }}
           file: template/${{ matrix.template }}/Dockerfile
-          tags: bde2020/spark-${{ matrix.template }}-template:${{env.DOCKER_IMAGE_TAG}}
+          tags: ted/spark-${{ matrix.template }}-template:${{env.DOCKER_IMAGE_TAG}}
           push: ${{ github.event_name != 'pull_request' }}
