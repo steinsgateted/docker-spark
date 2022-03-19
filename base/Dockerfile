@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM cwbw/hadoop-base
 
 LABEL maintainer="Gezim Sejdiu <g.sejdiu@gmail.com>, Giannis Mouchakis <gmouchakis@gmail.com>"
 
@@ -7,7 +7,7 @@ ENV INIT_DAEMON_BASE_URI http://identifier/init-daemon
 ENV INIT_DAEMON_STEP spark_master_init
 
 ENV BASE_URL=https://archive.apache.org/dist/spark/
-ENV SPARK_VERSION=3.2.0
+ENV SPARK_VERSION=3.2.1
 ENV HADOOP_VERSION=3.2
 
 COPY wait-for-step.sh /
@@ -17,9 +17,6 @@ COPY finish-step.sh /
 #COPY bde-spark.css /css/org/apache/spark/ui/static/timeline-view.css
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-      openjdk-8-jdk \
-      net-tools \
-      curl \
       nano \
       python3 \
       python3-pip \

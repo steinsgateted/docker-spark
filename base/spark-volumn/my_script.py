@@ -1,4 +1,7 @@
 from pyspark import SparkConf, SparkContext
+import numpy as np
+
+np1 = np.array([1,2,3])
 
 conf = SparkConf().setAppName('My App')
 sc = SparkContext(conf=conf)

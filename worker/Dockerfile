@@ -1,4 +1,4 @@
-FROM ted/spark-base:3.2.0-hadoop3.2
+FROM ted/spark-base
 
 LABEL maintainer="Gezim Sejdiu <g.sejdiu@gmail.com>, Giannis Mouchakis <gmouchakis@gmail.com>"
 

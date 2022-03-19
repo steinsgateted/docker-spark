@@ -1,4 +1,4 @@
-FROM ted/spark-base:3.2.0-hadoop3.2
+FROM ted/spark-base
 
 LABEL maintainer="Gezim Sejdiu <g.sejdiu@gmail.com>, Giannis Mouchakis <gmouchakis@gmail.com>"
 
@@ -8,6 +8,6 @@ ENV SPARK_MASTER_PORT 7077
 ENV SPARK_MASTER_WEBUI_PORT 8080
 ENV SPARK_MASTER_LOG /spark/logs
 
-EXPOSE 8080 7077 6066
+EXPOSE 8080 7077 6066 18080
 
 CMD ["/bin/bash", "/master.sh"]
